@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Fic.XTB.FastRecordCounter</id>
+    <version>1.2020.12.1</version>
+    <title>Fast Record Counter for XrmToolBox</title>
+    <authors>Ivan Ficko</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/DynamicsNinja/FastRecordCounter</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/DynamicsNinja/FastRecordCounter/main/docs/img/frc-logo-80.png</iconUrl>
+    <description>Get number of total records per entity instantly.</description>
+    <summary>Get number of total records per entity instantly.</summary>
+    <releaseNotes>1.2020.12.1
+- Initial version of the tool released</releaseNotes>
+    <copyright>Copyright 2020 Ivan Ficko</copyright>
+    <tags>XrmToolBox Plugins FastRecordCounter</tags>
+    <dependencies>
+      <dependency id="XrmToolBox" version="1.2018.6.25" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="FastRecordCounter\bin\Release\Plugins\Fic.XTB.FastRecordCounter.dll" target="lib\net472\Plugins\Fic.XTB.FastRecordCounter.dll" />
+  </files>
+</package>
