@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Fic.XTB.FastRecordCounter</id>
-    <version>1.2020.12.1</version>
+    <version>1.2020.12.2</version>
     <title>Fast Record Counter for XrmToolBox</title>
     <authors>Ivan Ficko</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -10,7 +10,10 @@
     <iconUrl>https://raw.githubusercontent.com/DynamicsNinja/FastRecordCounter/main/docs/img/frc-logo-80.png</iconUrl>
     <description>Get number of total records per entity instantly.</description>
     <summary>Get number of total records per entity instantly.</summary>
-    <releaseNotes>1.2020.12.1
+    <releaseNotes>1.2020.12.2
+- Fixed Select All behavior
+- Added warning for organizations that are not on v9+
+1.2020.12.1
 - Initial version of the tool released</releaseNotes>
     <copyright>Copyright 2020 Ivan Ficko</copyright>
     <tags>XrmToolBox Plugins FastRecordCounter</tags>
