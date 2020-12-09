@@ -68,6 +68,20 @@ namespace Fic.XTB.FastRecordCounter
                 Settings.LastUsedOrganizationWebappUrl = detail.WebApplicationUrl;
                 LogInfo("Connection has changed to: {0}", detail.WebApplicationUrl);
             }
+
+            var version = new Version(detail?.OrganizationVersion ?? string.Empty);
+
+            tsbCount.Enabled = version >= new Version(9, 0);
+
+            if (!tsbCount.Enabled)
+            {
+                MessageBox.Show(
+                    @"Fast record counting is available only on instances that are on v9+",
+                    @"Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
         }
 
         private void FastRecordCounter_ConnectionUpdated(object sender, ConnectionUpdatedEventArgs e)
