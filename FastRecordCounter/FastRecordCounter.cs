@@ -269,7 +269,7 @@ namespace Fic.XTB.FastRecordCounter
         {
             foreach (DataGridViewRow row in dgvEntities.Rows)
             {
-                row.Cells[GridColumn.Selected].Value = true;
+                row.Cells[GridColumn.Selected].Value = row.Visible;
             }
 
             CountSelected();
