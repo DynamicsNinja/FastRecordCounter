@@ -10,7 +10,10 @@
     <iconUrl>https://raw.githubusercontent.com/DynamicsNinja/FastRecordCounter/main/docs/img/frc-logo-300.png</iconUrl>
     <description>Get number of total records per entity instantly.</description>
     <summary>Get number of total records per entity instantly.</summary>
-    <releaseNotes>1.2020.12.2
+    <releaseNotes>1.2020.12.7
+- Added support for legacy count methods
+- Fixed search to be case insensitive
+1.2020.12.2
 - Fixed Select All behavior
 - Added warning for organizations that are not on v9+
 1.2020.12.1

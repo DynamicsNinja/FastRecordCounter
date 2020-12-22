@@ -154,14 +154,14 @@ namespace Fic.XTB.FastRecordCounter
 
         private void tstbSearch_TextChanged(object sender, EventArgs e)
         {
-            var searchTerm = tstbSearch.Text;
+            var searchTerm = tstbSearch.Text.ToLower();
 
             foreach (DataGridViewRow row in dgvEntities.Rows)
             {
                 var displayName = row.Cells[GridColumn.DisplayName].Value != null ? row.Cells[GridColumn.DisplayName].Value.ToString() : "";
                 var schemaName = row.Cells[GridColumn.SchemaName].Value.ToString();
 
-                row.Visible = displayName.Contains(searchTerm) || schemaName.Contains(searchTerm);
+                row.Visible = displayName.ToLower().Contains(searchTerm) || schemaName.Contains(searchTerm);
             };
 
             CountVisibleEntities();
