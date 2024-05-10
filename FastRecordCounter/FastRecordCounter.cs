@@ -261,6 +261,7 @@ namespace Fic.XTB.FastRecordCounter
                             var rowId = dgvEntities.Rows.Add();
                             var row = dgvEntities.Rows[rowId];
 
+                            var objectTypeCode = entity.ObjectTypeCode;
                             var logicalName = entity.LogicalName;
                             var displayName = entity.DisplayName.LocalizedLabels.FirstOrDefault()?.Label ?? entity.LogicalName;
 
@@ -272,7 +273,8 @@ namespace Fic.XTB.FastRecordCounter
                             {
                                 LogicalName = logicalName,
                                 DisplayName = displayName,
-                                PrimaryIdAttribute = entity.PrimaryIdAttribute
+                                PrimaryIdAttribute = entity.PrimaryIdAttribute,
+                                ObjectTypeCode = objectTypeCode
                             };
                         }
 
@@ -314,6 +316,27 @@ namespace Fic.XTB.FastRecordCounter
                 Message = $"Counting records....{Environment.NewLine}0,00%",
                 Work = (w, e) =>
                 {
+                    var selectedObjectTypeCodes = new List<int>();
+
+                    foreach (var entityName in entityNames)
+                    {
+                        var objectTypeCode = Entities[entityName].ObjectTypeCode;
+
+                        if (objectTypeCode == null) { continue; }
+
+                        selectedObjectTypeCodes.Add((int)objectTypeCode);
+                    }
+
+                    var query = new QueryExpression("recordcountsnapshot");
+                    query.ColumnSet.AddColumns("lastupdated", "objecttypecode");
+
+                    if (selectedObjectTypeCodes.Count <= 250)
+                    {
+                        query.Criteria.AddCondition("objecttypecode", ConditionOperator.In, selectedObjectTypeCodes.ToArray());
+                    }
+
+                    var recordCountSnapshot = Service.RetrieveMultiple(query);
+
                     var requestsCollection = new OrganizationRequestCollection();
 
                     foreach (var entityName in entityNames)
@@ -369,6 +392,16 @@ namespace Fic.XTB.FastRecordCounter
 
                                 var entityName = countResponse.Key;
                                 var count = (int)countResponse.Value;
+
+                                var recordCountSnapshotRecord = recordCountSnapshot.Entities.FirstOrDefault(x =>
+                                    (int)x["objecttypecode"] == Entities[entityName].ObjectTypeCode);
+
+                                var lastUpdated = (DateTime?)recordCountSnapshotRecord?["lastupdated"];
+
+                                if (lastUpdated != null)
+                                {
+                                    tslCountLastUpdated.Text = "Count Last Updated: " + lastUpdated.Value.ToString("dd/MM/yyyy HH:mm:ss");
+                                }
 
                                 SetCount(entityName, count, null);
                             }
@@ -455,7 +488,7 @@ namespace Fic.XTB.FastRecordCounter
 
             if (match.Success)
             {
-                var cntString = match.Groups[match.Groups.Count -1].Value;
+                var cntString = match.Groups[match.Groups.Count - 1].Value;
                 var cnt = int.Parse(cntString);
                 SetCount(entityName, cnt, null);
             }

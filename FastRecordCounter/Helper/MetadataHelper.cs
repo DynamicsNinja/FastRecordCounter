@@ -6,7 +6,7 @@ namespace Fic.XTB.FastRecordCounter.Helper
 {
     public static class MetadataHelper
     {
-        private static readonly string[] EntityProperties = { "LogicalName", "DisplayName", "IsManaged", "IsCustomizable", "IsCustomEntity", "IsIntersect", "IsValidForAdvancedFind", "PrimaryIdAttribute" };
+        private static readonly string[] EntityProperties = { "ObjectTypeCode", "LogicalName", "DisplayName", "IsManaged", "IsCustomizable", "IsCustomEntity", "IsIntersect", "IsValidForAdvancedFind", "PrimaryIdAttribute" };
 
         public static RetrieveMetadataChangesResponse LoadEntities(IOrganizationService service)
         {

@@ -30,7 +30,7 @@ namespace Fic.XTB.FastRecordCounter
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FastRecordCounter));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStripMenu = new System.Windows.Forms.ToolStrip();
             this.tsbClose = new System.Windows.Forms.ToolStripButton();
             this.tstbSearch = new System.Windows.Forms.ToolStripTextBox();
@@ -49,11 +49,13 @@ namespace Fic.XTB.FastRecordCounter
             this.tslSelectedLabel = new System.Windows.Forms.ToolStripLabel();
             this.tslSelectedCount = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tslCountLastUpdated = new System.Windows.Forms.ToolStripLabel();
             this.dgvEntities = new System.Windows.Forms.DataGridView();
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.DisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SchemaName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Result = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tsbDonate = new System.Windows.Forms.ToolStripButton();
             this.toolStripMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntities)).BeginInit();
             this.SuspendLayout();
@@ -76,10 +78,13 @@ namespace Fic.XTB.FastRecordCounter
             this.toolStripSeparator3,
             this.tslSelectedLabel,
             this.tslSelectedCount,
-            this.toolStripSeparator4});
+            this.toolStripSeparator4,
+            this.tslCountLastUpdated,
+            this.tsbDonate});
             this.toolStripMenu.Location = new System.Drawing.Point(0, 0);
             this.toolStripMenu.Name = "toolStripMenu";
-            this.toolStripMenu.Size = new System.Drawing.Size(916, 31);
+            this.toolStripMenu.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.toolStripMenu.Size = new System.Drawing.Size(1374, 34);
             this.toolStripMenu.TabIndex = 4;
             this.toolStripMenu.Text = "toolStrip1";
             // 
@@ -89,7 +94,7 @@ namespace Fic.XTB.FastRecordCounter
             this.tsbClose.Image = ((System.Drawing.Image)(resources.GetObject("tsbClose.Image")));
             this.tsbClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbClose.Name = "tsbClose";
-            this.tsbClose.Size = new System.Drawing.Size(28, 28);
+            this.tsbClose.Size = new System.Drawing.Size(34, 29);
             this.tsbClose.Text = "Close";
             this.tsbClose.Click += new System.EventHandler(this.tsbClose_Click);
             // 
@@ -97,7 +102,7 @@ namespace Fic.XTB.FastRecordCounter
             // 
             this.tstbSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tstbSearch.Name = "tstbSearch";
-            this.tstbSearch.Size = new System.Drawing.Size(100, 31);
+            this.tstbSearch.Size = new System.Drawing.Size(148, 38);
             this.tstbSearch.Text = "search...";
             this.tstbSearch.Enter += new System.EventHandler(this.tstbSearch_Enter);
             this.tstbSearch.TextChanged += new System.EventHandler(this.tstbSearch_TextChanged);
@@ -105,14 +110,14 @@ namespace Fic.XTB.FastRecordCounter
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
             // 
             // tsbCount
             // 
             this.tsbCount.Image = ((System.Drawing.Image)(resources.GetObject("tsbCount.Image")));
             this.tsbCount.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbCount.Name = "tsbCount";
-            this.tsbCount.Size = new System.Drawing.Size(68, 28);
+            this.tsbCount.Size = new System.Drawing.Size(88, 33);
             this.tsbCount.Text = "Count";
             this.tsbCount.Click += new System.EventHandler(this.tsbCount_Click);
             // 
@@ -121,7 +126,7 @@ namespace Fic.XTB.FastRecordCounter
             this.tsbSelectAll.Image = ((System.Drawing.Image)(resources.GetObject("tsbSelectAll.Image")));
             this.tsbSelectAll.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSelectAll.Name = "tsbSelectAll";
-            this.tsbSelectAll.Size = new System.Drawing.Size(83, 28);
+            this.tsbSelectAll.Size = new System.Drawing.Size(111, 33);
             this.tsbSelectAll.Text = "Select All";
             this.tsbSelectAll.Click += new System.EventHandler(this.tsbSelectAll_Click);
             // 
@@ -130,7 +135,7 @@ namespace Fic.XTB.FastRecordCounter
             this.tsbUnselectAll.Image = ((System.Drawing.Image)(resources.GetObject("tsbUnselectAll.Image")));
             this.tsbUnselectAll.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbUnselectAll.Name = "tsbUnselectAll";
-            this.tsbUnselectAll.Size = new System.Drawing.Size(97, 28);
+            this.tsbUnselectAll.Size = new System.Drawing.Size(131, 33);
             this.tsbUnselectAll.Text = "Unselect All";
             this.tsbUnselectAll.Click += new System.EventHandler(this.tsbUnselectAll_Click);
             // 
@@ -139,7 +144,7 @@ namespace Fic.XTB.FastRecordCounter
             this.tsbRefresh.Image = ((System.Drawing.Image)(resources.GetObject("tsbRefresh.Image")));
             this.tsbRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbRefresh.Name = "tsbRefresh";
-            this.tsbRefresh.Size = new System.Drawing.Size(115, 28);
+            this.tsbRefresh.Size = new System.Drawing.Size(159, 33);
             this.tsbRefresh.Text = "Refresh Entities";
             this.tsbRefresh.Click += new System.EventHandler(this.tsbRefresh_Click);
             // 
@@ -151,14 +156,14 @@ namespace Fic.XTB.FastRecordCounter
             this.tsbExport.Image = ((System.Drawing.Image)(resources.GetObject("tsbExport.Image")));
             this.tsbExport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbExport.Name = "tsbExport";
-            this.tsbExport.Size = new System.Drawing.Size(78, 28);
+            this.tsbExport.Size = new System.Drawing.Size(105, 33);
             this.tsbExport.Text = "Export";
             // 
             // tsbCsv
             // 
             this.tsbCsv.Image = ((System.Drawing.Image)(resources.GetObject("tsbCsv.Image")));
             this.tsbCsv.Name = "tsbCsv";
-            this.tsbCsv.Size = new System.Drawing.Size(188, 30);
+            this.tsbCsv.Size = new System.Drawing.Size(152, 34);
             this.tsbCsv.Text = "CSV";
             this.tsbCsv.Click += new System.EventHandler(this.tsbCsv_Click);
             // 
@@ -166,50 +171,55 @@ namespace Fic.XTB.FastRecordCounter
             // 
             this.tsbExcel.Image = ((System.Drawing.Image)(resources.GetObject("tsbExcel.Image")));
             this.tsbExcel.Name = "tsbExcel";
-            this.tsbExcel.Size = new System.Drawing.Size(188, 30);
+            this.tsbExcel.Size = new System.Drawing.Size(152, 34);
             this.tsbExcel.Text = "Excel";
             this.tsbExcel.Click += new System.EventHandler(this.tsbExcel_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
             // 
             // tslEntityNumber
             // 
             this.tslEntityNumber.Name = "tslEntityNumber";
-            this.tslEntityNumber.Size = new System.Drawing.Size(111, 28);
+            this.tslEntityNumber.Size = new System.Drawing.Size(167, 33);
             this.tslEntityNumber.Text = "Number Of Entities:";
             // 
             // tblEntitiesCount
             // 
             this.tblEntitiesCount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.tblEntitiesCount.Name = "tblEntitiesCount";
-            this.tblEntitiesCount.Size = new System.Drawing.Size(14, 28);
+            this.tblEntitiesCount.Size = new System.Drawing.Size(22, 33);
             this.tblEntitiesCount.Text = "0";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 38);
             // 
             // tslSelectedLabel
             // 
             this.tslSelectedLabel.Name = "tslSelectedLabel";
-            this.tslSelectedLabel.Size = new System.Drawing.Size(95, 28);
+            this.tslSelectedLabel.Size = new System.Drawing.Size(143, 33);
             this.tslSelectedLabel.Text = "Selected Entities:";
             // 
             // tslSelectedCount
             // 
             this.tslSelectedCount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.tslSelectedCount.Name = "tslSelectedCount";
-            this.tslSelectedCount.Size = new System.Drawing.Size(14, 28);
+            this.tslSelectedCount.Size = new System.Drawing.Size(22, 33);
             this.tslSelectedCount.Text = "0";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 38);
+            // 
+            // tslCountLastUpdated
+            // 
+            this.tslCountLastUpdated.Name = "tslCountLastUpdated";
+            this.tslCountLastUpdated.Size = new System.Drawing.Size(0, 33);
             // 
             // dgvEntities
             // 
@@ -226,9 +236,11 @@ namespace Fic.XTB.FastRecordCounter
             this.DisplayName,
             this.SchemaName,
             this.Result});
-            this.dgvEntities.Location = new System.Drawing.Point(3, 34);
+            this.dgvEntities.Location = new System.Drawing.Point(4, 52);
+            this.dgvEntities.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvEntities.Name = "dgvEntities";
-            this.dgvEntities.Size = new System.Drawing.Size(910, 429);
+            this.dgvEntities.RowHeadersWidth = 62;
+            this.dgvEntities.Size = new System.Drawing.Size(1365, 660);
             this.dgvEntities.TabIndex = 5;
             this.dgvEntities.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEntities_CellClick);
             this.dgvEntities.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvEntities_CurrentCellDirtyStateChanged);
@@ -238,6 +250,7 @@ namespace Fic.XTB.FastRecordCounter
             this.Selected.FalseValue = false;
             this.Selected.FillWeight = 20.30457F;
             this.Selected.HeaderText = "";
+            this.Selected.MinimumWidth = 8;
             this.Selected.Name = "Selected";
             this.Selected.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Selected.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -247,31 +260,44 @@ namespace Fic.XTB.FastRecordCounter
             // 
             this.DisplayName.FillWeight = 126.5651F;
             this.DisplayName.HeaderText = "Display Name";
+            this.DisplayName.MinimumWidth = 8;
             this.DisplayName.Name = "DisplayName";
             // 
             // SchemaName
             // 
             this.SchemaName.FillWeight = 126.5651F;
             this.SchemaName.HeaderText = "Schema Name";
+            this.SchemaName.MinimumWidth = 8;
             this.SchemaName.Name = "SchemaName";
             // 
             // Result
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
-            this.Result.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N0";
+            this.Result.DefaultCellStyle = dataGridViewCellStyle3;
             this.Result.FillWeight = 126.5651F;
             this.Result.HeaderText = "Result";
+            this.Result.MinimumWidth = 8;
             this.Result.Name = "Result";
+            // 
+            // tsbDonate
+            // 
+            this.tsbDonate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbDonate.Image = ((System.Drawing.Image)(resources.GetObject("tsbDonate.Image")));
+            this.tsbDonate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDonate.Name = "tsbDonate";
+            this.tsbDonate.Size = new System.Drawing.Size(98, 33);
+            this.tsbDonate.Text = "Donate";
             // 
             // FastRecordCounter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgvEntities);
             this.Controls.Add(this.toolStripMenu);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FastRecordCounter";
-            this.Size = new System.Drawing.Size(916, 466);
+            this.Size = new System.Drawing.Size(1374, 717);
             this.OnCloseTool += new System.EventHandler(this.FastRecordCounter_OnCloseTool);
             this.ConnectionUpdated += new XrmToolBox.Extensibility.PluginControlBase.ConnectionUpdatedHandler(this.FastRecordCounter_ConnectionUpdated);
             this.Load += new System.EventHandler(this.MyPluginControl_Load);
@@ -296,10 +322,6 @@ namespace Fic.XTB.FastRecordCounter
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel tblEntitiesCount;
         private System.Windows.Forms.ToolStripButton tsbRefresh;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DisplayName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SchemaName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Result;
         private System.Windows.Forms.ToolStripLabel tslSelectedLabel;
         private System.Windows.Forms.ToolStripLabel tslSelectedCount;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
@@ -307,5 +329,11 @@ namespace Fic.XTB.FastRecordCounter
         private System.Windows.Forms.ToolStripDropDownButton tsbExport;
         private System.Windows.Forms.ToolStripMenuItem tsbCsv;
         private System.Windows.Forms.ToolStripMenuItem tsbExcel;
+        private System.Windows.Forms.ToolStripLabel tslCountLastUpdated;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DisplayName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SchemaName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Result;
+        private System.Windows.Forms.ToolStripButton tsbDonate;
     }
 }
