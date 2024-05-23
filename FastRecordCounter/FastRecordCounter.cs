@@ -330,11 +330,6 @@ namespace Fic.XTB.FastRecordCounter
                     var query = new QueryExpression("recordcountsnapshot");
                     query.ColumnSet.AddColumns("lastupdated", "objecttypecode");
 
-                    if (selectedObjectTypeCodes.Count <= 250)
-                    {
-                        query.Criteria.AddCondition("objecttypecode", ConditionOperator.In, selectedObjectTypeCodes.ToArray());
-                    }
-
                     var recordCountSnapshot = Service.RetrieveMultiple(query);
 
                     var requestsCollection = new OrganizationRequestCollection();
