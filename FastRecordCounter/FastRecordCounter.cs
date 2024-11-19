@@ -392,11 +392,9 @@ namespace Fic.XTB.FastRecordCounter
                                 var recordCountSnapshotRecord = recordCountSnapshot.Entities.FirstOrDefault(x =>
                                     (int)x["objecttypecode"] == Entities[entityName].ObjectTypeCode);
 
-                                var lastUpdated = (DateTime?)recordCountSnapshotRecord?["lastupdated"];
-
-                                if (lastUpdated != null)
+                                if (recordCountSnapshotRecord.TryGetAttributeValue<DateTime>("lastupdated", out var lastUpdated))
                                 {
-                                    tslCountLastUpdated.Text = "Count Last Updated: " + lastUpdated.Value.ToString("dd/MM/yyyy HH:mm:ss");
+                                    tslCountLastUpdated.Text = "Count Last Updated: " + lastUpdated.ToString("yyyy-MM-dd HH:mm:ss");
                                 }
 
                                 SetCount(entityName, count, null);
