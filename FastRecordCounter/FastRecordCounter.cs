@@ -1,34 +1,35 @@
-﻿using McTools.Xrm.Connection;
+﻿using Fic.XTB.FastRecordCounter.Helper;
+using Fic.XTB.FastRecordCounter.Model;
+using McTools.Xrm.Connection;
+using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Office.Interop.Excel;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Query;
+using Microsoft.Xrm.Tooling.Connector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Fic.XTB.FastRecordCounter.Model;
-using Microsoft.Crm.Sdk.Messages;
-using Microsoft.Office.Interop.Excel;
-using Microsoft.Xrm.Sdk.Messages;
-using Microsoft.Xrm.Sdk.Metadata.Query;
-using Microsoft.Xrm.Sdk.Query;
-using Microsoft.Xrm.Tooling.Connector;
-using XrmToolBox.Extensibility;
-using XrmToolBox.Extensibility.Interfaces;
 using System.ServiceModel;
 using System.Text.RegularExpressions;
-using Fic.XTB.FastRecordCounter.Helper;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using XrmToolBox.Extensibility;
+using XrmToolBox.Extensibility.Interfaces;
 
 namespace Fic.XTB.FastRecordCounter
 {
     public partial class FastRecordCounter : PluginControlBase, IGitHubPlugin
     {
         #region GitHub Info
+
         public string RepositoryName => "FastRecordCounter";
         public string UserName => "DynamicsNinja";
-        #endregion
+
+        #endregion GitHub Info
 
         public string CurrentOrg;
         public Settings Settings;
@@ -230,7 +231,7 @@ namespace Fic.XTB.FastRecordCounter
             }
         }
 
-        #endregion
+        #endregion Events
 
         #region Methods
 
@@ -246,7 +247,7 @@ namespace Fic.XTB.FastRecordCounter
                 {
                     if (completedargs.Error != null)
                     {
-                        MessageBox.Show(completedargs.Error.Message);
+                        ShowErrorDialog(completedargs.Error);
                     }
                     else
                     {
@@ -391,11 +392,9 @@ namespace Fic.XTB.FastRecordCounter
                                 var recordCountSnapshotRecord = recordCountSnapshot.Entities.FirstOrDefault(x =>
                                     (int)x["objecttypecode"] == Entities[entityName].ObjectTypeCode);
 
-                                var lastUpdated = (DateTime?)recordCountSnapshotRecord?["lastupdated"];
-
-                                if (lastUpdated != null)
+                                if (recordCountSnapshotRecord.TryGetAttributeValue<DateTime>("lastupdated", out var lastUpdated))
                                 {
-                                    tslCountLastUpdated.Text = "Count Last Updated: " + lastUpdated.Value.ToString("dd/MM/yyyy HH:mm:ss");
+                                    tslCountLastUpdated.Text = "Count Last Updated: " + lastUpdated.ToString("yyyy-MM-dd HH:mm:ss");
                                 }
 
                                 SetCount(entityName, count, null);
@@ -411,7 +410,6 @@ namespace Fic.XTB.FastRecordCounter
 
                     watch.Stop();
                     var ms = (decimal)watch.ElapsedMilliseconds;
-
                 },
                 ProgressChanged = e =>
                 {
@@ -421,7 +419,7 @@ namespace Fic.XTB.FastRecordCounter
                 {
                     if (completedargs.Error != null)
                     {
-                        MessageBox.Show(completedargs.Error.Message);
+                        ShowErrorDialog(completedargs.Error);
                     }
                 }
             });
@@ -429,7 +427,6 @@ namespace Fic.XTB.FastRecordCounter
 
         private void ExecuteLegacyCount(List<string> entityNames)
         {
-
             WorkAsync(new WorkAsyncInfo
             {
                 Message = $"Counting records...",
@@ -688,7 +685,7 @@ namespace Fic.XTB.FastRecordCounter
                 {
                     if (completedargs.Error != null)
                     {
-                        MessageBox.Show(completedargs.Error.Message);
+                        ShowErrorDialog(completedargs.Error);
                     }
                 }
             });
@@ -724,11 +721,13 @@ namespace Fic.XTB.FastRecordCounter
                         ? rows.OrderBy(r => r.DisplayName).ToList()
                         : rows.OrderByDescending(r => r.DisplayName).ToList();
                     break;
+
                 case GridColumn.SchemaName:
                     sorted = direction == SortOrder.Ascending
                         ? rows.OrderBy(r => r.SchemaName).ToList()
                         : rows.OrderByDescending(r => r.SchemaName).ToList();
                     break;
+
                 case GridColumn.Result:
                     sorted = direction == SortOrder.Ascending
                         ? rows.OrderBy(r => r.Count).ToList()
@@ -739,6 +738,6 @@ namespace Fic.XTB.FastRecordCounter
             return sorted;
         }
 
-        #endregion
+        #endregion Methods
     }
 }
