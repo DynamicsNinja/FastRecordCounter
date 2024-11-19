@@ -10,7 +10,9 @@
     <iconUrl>https://raw.githubusercontent.com/DynamicsNinja/FastRecordCounter/main/docs/img/frc-logo-300.png</iconUrl>
     <description>Get number of total records per entity instantly.</description>
     <summary>Get number of total records per entity instantly.</summary>
-    <releaseNotes>1.2024.05.11
+    <releaseNotes>1.2024.12.3
+- Fixed issue when there is no last update date, thx @rappen
+1.2024.05.11
 - Fixed issue when you select only one table to count
 1.2024.5.8
 - Added count last update date
