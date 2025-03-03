@@ -392,7 +392,7 @@ namespace Fic.XTB.FastRecordCounter
                                 var recordCountSnapshotRecord = recordCountSnapshot.Entities.FirstOrDefault(x =>
                                     (int)x["objecttypecode"] == Entities[entityName].ObjectTypeCode);
 
-                                if (recordCountSnapshotRecord.Contains("lastupdated"))
+                                if (recordCountSnapshotRecord != null && recordCountSnapshotRecord.Contains("lastupdated"))
                                 {
                                     var lastUpdated = (DateTime?)recordCountSnapshotRecord["lastupdated"];
 
